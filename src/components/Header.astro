@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import Logo from '/public/logo.png';
+
 const navItems = [
   { href: '/', label: 'Start' },
   { href: '/uslugi', label: 'Usługi' },
@@ -15,7 +18,7 @@ const currentPath = Astro.url.pathname;
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <a href="/" class="flex items-center space-x-3 group">
-        <img src="/logo.png" alt="Sandpool Logo" class="h-16 w-auto transition-all group-hover:scale-120" />
+        <Image src={Logo} alt="Sandpool Logo" class="h-16 w-auto transition-all group-hover:scale-110" />
         <span class="text-xl font-bold text-gray-100 group-hover:text-primary-400 transition-colors">Sandpool</span>
       </a>
 

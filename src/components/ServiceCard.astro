@@ -87,7 +87,6 @@ if (typeof window !== 'undefined') {
       }
     });
 
-    // Znajdź najbardziej widoczny element
     let mostVisible: Element | null = null;
     let maxRatio = 0;
 
@@ -97,8 +96,6 @@ if (typeof window !== 'undefined') {
         mostVisible = element;
       }
     });
-
-    // Usuń klasę ze wszystkich i dodaj tylko do najbardziej widocznego
     document.querySelectorAll('.service-card').forEach(el => {
       (el as HTMLElement).classList.remove('in-view');
     });

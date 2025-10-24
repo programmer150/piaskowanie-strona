@@ -8,8 +8,62 @@ export interface Props {
 const { title, description, icon } = Astro.props;
 ---
 
-<div class="flex flex-col items-center text-center p-6 group hover:bg-gray-800/50 rounded-xl transition-all">
+<div class="feature-card flex flex-col items-center text-center p-6 group hover:bg-gray-800/50 rounded-xl transition-all">
   <div class="w-16 h-16 bg-gradient-to-br from-bronze-700 to-primary-600 rounded-full flex items-center justify-center text-white mb-4 group-hover:scale-110 group-hover:shadow-glow transition-all" set:html={icon} />
   <h3 class="text-lg font-semibold text-gray-100 mb-2 group-hover:text-primary-400 transition-colors">{title}</h3>
   <p class="text-gray-300">{description}</p>
 </div>
+
+<style>
+@media (hover: none) {
+  .feature-card.in-view {
+    background-color: rgba(31, 41, 55, 0.5); /* Odpowiednik hover:bg-gray-800/50 */
+  }
+  .feature-card.in-view .w-16 {
+    transform: scale(1.1); /* Odpowiednik group-hover:scale-110 */
+    box-shadow: 0 0 20px rgba(197, 48, 48, 0.3); /* Odpowiednik group-hover:shadow-glow */
+  }
+  .feature-card.in-view h3 {
+    color: #C53030; /* Odpowiednik group-hover:text-primary-400 */
+  }
+}
+</style>
+
+<script>
+if (typeof window !== 'undefined') {
+  let visibleElements = new Map<Element, number>();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        visibleElements.set(entry.target, entry.intersectionRatio);
+      } else {
+        visibleElements.delete(entry.target);
+      }
+    });
+
+    let mostVisible: Element | null = null;
+    let maxRatio = 0;
+
+    visibleElements.forEach((ratio, element) => {
+      if (ratio > maxRatio) {
+        maxRatio = ratio;
+        mostVisible = element;
+      }
+    });
+    document.querySelectorAll('.feature-card').forEach(el => {
+      (el as HTMLElement).classList.remove('in-view');
+    });
+
+    if (mostVisible) {
+      (mostVisible as HTMLElement).classList.add('in-view');
+    }
+  }, {
+    threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+  });
+
+  document.querySelectorAll('.feature-card').forEach(el => {
+    observer.observe(el);
+  });
+}
+</script>
