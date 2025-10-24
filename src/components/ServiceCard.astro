@@ -53,11 +53,23 @@ const Tag = href ? 'a' : 'div';
   opacity: 1;
 }
 
-/* Efekt scroll tylko na urządzeniach dotykowych (bez hover) */
 @media (hover: none) {
+  .service-card.in-view {
+    border-color: #C53030;
+    box-shadow: 0 0 20px rgba(197, 48, 48, 0.3); /* Dodaj efekt cienia */
+  }
   .service-card.in-view::before {
     filter: blur(0);
     opacity: 1;
+  }
+  .service-card.in-view h3 {
+    color: #C53030;
+  }
+  .service-card.in-view .text-primary-400 {
+    transform: scale(1.1); /* Dodaj efekt skalowania ikony */
+  }
+  .service-card.in-view .flex.items-center {
+    transform: translateX(4px); /* Dodaj efekt przesunięcia tekstu "Dowiedz się więcej" */
   }
 }
 </style>
