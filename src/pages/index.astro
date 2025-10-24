@@ -226,8 +226,12 @@ if (typeof window !== 'undefined') {
 			index++;
 			setTimeout(typeText, 120); // 120ms między każdą literą
 		} else if (cursor) {
-			// Po zakończeniu pisania, zostaw kursor migający
-			cursor.style.display = 'inline-block';
+			// Po zakończeniu pisania, ukryj kursor
+			setTimeout(() => {
+				if (cursor) {
+					cursor.style.display = 'none';
+				}
+			}, 500);
 		}
 	}
 
