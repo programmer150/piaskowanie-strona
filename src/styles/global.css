@@ -1,17 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
+  /* Bordowa paleta - z logo Sandpool */
+  --color-primary-50: #fef2f2;
+  --color-primary-100: #fee2e2;
+  --color-primary-200: #fecaca;
+  --color-primary-300: #fca5a5;
+  --color-primary-400: #C53030;
+  --color-primary-500: #A52A2A;
+  --color-primary-600: #8B2F2F;
+  --color-primary-700: #7D2121;
+  --color-primary-800: #6B1A1A;
+  --color-primary-900: #5A1616;
 
+  /* Ciemne tła - bez zmian */
   --color-gray-50: #f9fafb;
   --color-gray-100: #e6edf3;
   --color-gray-200: #c9d1d9;
@@ -25,12 +27,22 @@
   --color-gray-900: #0d1117;
   --color-gray-950: #010409;
 
-  --color-steel-100: #e1e7ef;
-  --color-steel-200: #c5d1de;
-  --color-steel-300: #a9bbce;
-  --color-steel-400: #8da5be;
-  --color-steel-500: #6b8caf;
-  --color-steel-600: #527193;
-  --color-steel-700: #3d5670;
-  --color-steel-800: #2a3f54;
+  /* Brązowo-miedziany (bronze) - z logo */
+  --color-bronze-100: #f5e6d3;
+  --color-bronze-200: #E8C9A0;
+  --color-bronze-300: #D9A574;
+  --color-bronze-400: #C8956B;
+  --color-bronze-500: #A0826D;
+  --color-bronze-600: #8B6F47;
+  --color-bronze-700: #6B5D4F;
+  --color-bronze-800: #4A3F35;
+
+  /* Piaskowy (sand) - pyłu z logo */
+  --color-sand-100: #FAF5EF;
+  --color-sand-200: #F5DEB3;
+  --color-sand-300: #EDD8B5;
+  --color-sand-400: #DEB887;
+  --color-sand-500: #D4A76A;
+  --color-sand-600: #C19A6B;
+  --color-sand-700: #A38654;
 }
