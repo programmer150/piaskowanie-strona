@@ -26,7 +26,7 @@ import FeatureCard from '../components/FeatureCard.astro';
 		<div class="container mx-auto px-4 relative z-10">
 			<div class="max-w-4xl mx-auto text-center">
 				<h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-100">
-					Profesjonalne Usługi <span class="text-primary-400">Piaskowania</span>
+					Profesjonalne Usługi <span class="text-primary-400 typing-container"><span id="typing-text"></span><span class="typing-cursor">|</span></span>
 				</h1>
 				<p class="text-xl md:text-2xl mb-8 text-gray-200">
 					Przywracamy powierzchniom pierwotny wygląd. Specjalizujemy się w piaskowaniu przemysłowym,
@@ -192,3 +192,46 @@ import FeatureCard from '../components/FeatureCard.astro';
 		</div>
 	</section>
 </Layout>
+
+<style>
+.typing-container {
+	display: inline-block;
+}
+
+.typing-cursor {
+	animation: blink 0.7s infinite;
+	margin-left: 2px;
+}
+
+@keyframes blink {
+	0%, 50% {
+		opacity: 1;
+	}
+	51%, 100% {
+		opacity: 0;
+	}
+}
+</style>
+
+<script>
+if (typeof window !== 'undefined') {
+	const text = "Piaskowania";
+	const typingElement = document.getElementById('typing-text');
+	const cursor = document.querySelector('.typing-cursor');
+	let index = 0;
+
+	function typeText() {
+		if (index < text.length && typingElement) {
+			typingElement.textContent += text.charAt(index);
+			index++;
+			setTimeout(typeText, 120); // 120ms między każdą literą
+		} else if (cursor) {
+			// Po zakończeniu pisania, zostaw kursor migający
+			cursor.style.display = 'inline-block';
+		}
+	}
+
+	// Opóźnienie przed rozpoczęciem pisania
+	setTimeout(typeText, 500);
+}
+</script>
