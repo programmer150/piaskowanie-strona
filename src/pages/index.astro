@@ -10,11 +10,18 @@ import FeatureCard from '../components/FeatureCard.astro';
 	keywords="piaskowanie, piaskowanie przemysłowe, piaskowanie felg, piaskowanie konstrukcji stalowych, renowacja powierzchni, czyszczenie piaskowe"
 >
 	<!-- Hero Section -->
-	<section class="relative bg-gradient-to-br from-gray-850 via-gray-900 to-gray-800 text-white py-20 md:py-32 overflow-hidden">
-		<!-- Industrialny efekt tła -->
-		<div class="absolute inset-0 opacity-10">
-			<div class="absolute inset-0 bg-gradient-to-r from-transparent via-bronze-500 to-transparent transform -skew-y-12"></div>
-		</div>
+	<section class="relative text-white py-20 md:py-32 overflow-hidden">
+		<!-- Czerwono-czarny gradient bazowy -->
+		<div class="absolute inset-0 bg-gradient-to-br from-black via-primary-900 to-black"></div>
+
+		<!-- Poszarpana tekstura grunge -->
+		<div class="absolute inset-0 opacity-70" style="background-image: url('/hero.png'); background-size: cover; background-position: center; mix-blend-mode: multiply;"></div>
+
+		<!-- Warstwa dla białych strzępów -->
+		<div class="absolute inset-0 opacity-40" style="background-image: url('/hero.png'); background-size: cover; background-position: center; mix-blend-mode: screen; filter: contrast(2) brightness(1.3);"></div>
+
+		<!-- Dodatkowy czerwony gradient dla głębi -->
+		<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-primary-800/30"></div>
 
 		<div class="container mx-auto px-4 relative z-10">
 			<div class="max-w-4xl mx-auto text-center">

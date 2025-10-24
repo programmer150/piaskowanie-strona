@@ -1,0 +1,35 @@
+<svg width="1000" height="1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Filtr dla poszarpanego efektu -->
+    <filter id="roughen">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- Filtr dla grunge tekstury -->
+    <filter id="grunge">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" result="turbulence"/>
+      <feColorMatrix in="turbulence" type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0 0 0 0 1 1 1"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <!-- Czarne poszarpane tło -->
+  <rect width="1000" height="1000" fill="#000000"/>
+
+  <!-- Czerwone poszarpane kształty -->
+  <circle cx="500" cy="500" r="450" fill="#8B2F2F" filter="url(#roughen)" opacity="0.9"/>
+  <circle cx="500" cy="500" r="400" fill="#A52A2A" filter="url(#roughen)" opacity="0.8"/>
+  <circle cx="500" cy="500" r="350" fill="#C53030" filter="url(#roughen)" opacity="0.7"/>
+
+  <!-- Grunge overlay -->
+  <rect width="1000" height="1000" fill="black" filter="url(#grunge)" opacity="0.3"/>
+
+  <!-- Dodatkowe poszarpane plamy -->
+  <path d="M 100,200 Q 200,100 400,150 T 700,200 L 800,400 Q 700,500 500,480 T 200,450 Z"
+        fill="#1a0000" filter="url(#roughen)" opacity="0.6"/>
+  <path d="M 200,700 Q 350,650 500,700 T 850,750 L 900,900 Q 750,950 500,900 T 100,850 Z"
+        fill="#1a0000" filter="url(#roughen)" opacity="0.5"/>
+</svg>
