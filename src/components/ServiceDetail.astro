@@ -68,16 +68,38 @@ const { id, icon, title, titleHighlight, description, sections } = Astro.props;
 
 <script>
 if (typeof window !== 'undefined') {
+  let visibleElements = new Map<Element, number>();
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
+        visibleElements.set(entry.target, entry.intersectionRatio);
       } else {
-        entry.target.classList.remove('in-view');
+        visibleElements.delete(entry.target);
       }
     });
+
+    // Znajdź najbardziej widoczny element
+    let mostVisible: Element | null = null;
+    let maxRatio = 0;
+
+    visibleElements.forEach((ratio, element) => {
+      if (ratio > maxRatio) {
+        maxRatio = ratio;
+        mostVisible = element;
+      }
+    });
+
+    // Usuń klasę ze wszystkich i dodaj tylko do najbardziej widocznego
+    document.querySelectorAll('.service-detail').forEach(el => {
+      (el as HTMLElement).classList.remove('in-view');
+    });
+
+    if (mostVisible) {
+      (mostVisible as HTMLElement).classList.add('in-view');
+    }
   }, {
-    threshold: 0.2 // Element musi być widoczny w 20%
+    threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
   });
 
   document.querySelectorAll('.service-detail').forEach(el => {
