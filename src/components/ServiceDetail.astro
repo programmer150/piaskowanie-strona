@@ -1,0 +1,58 @@
+---
+const { id, icon, title, titleHighlight, description, sections } = Astro.props;
+---
+
+<div id={id} class="service-detail mb-16 scroll-mt-20 p-8 rounded-xl border border-gray-700 hover:border-primary-500 transition-colors relative overflow-hidden">
+  <div class="flex items-center mb-6 relative z-10">
+    <div class="w-16 h-16 bg-gradient-to-br from-bronze-600 to-primary-600 rounded-lg flex items-center justify-center text-white mr-4 shadow-glow" set:html={icon} />
+    <h2 class="text-3xl font-bold text-gray-100">{title} <span class="text-primary-400">{titleHighlight}</span></h2>
+  </div>
+  <div class="prose prose-lg max-w-none relative z-10">
+    <p class="text-gray-300 leading-relaxed mb-4">
+      {description}
+    </p>
+    {sections.map((section: any) => (
+      <>
+        <h3 class="text-xl font-semibold text-primary-400 mb-3">{section.title}</h3>
+        {section.listType === 'ol' ? (
+          <ol class="list-decimal list-inside space-y-2 text-gray-300 mb-4 ml-4">
+            {section.items.map((item: string) => <li>{item}</li>)}
+          </ol>
+        ) : (
+          <ul class="list-disc list-inside space-y-2 text-gray-300 mb-4 ml-4">
+            {section.items.map((item: string) => <li>{item}</li>)}
+          </ul>
+        )}
+      </>
+    ))}
+  </div>
+</div>
+
+<style>
+.service-detail::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/hero.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px);
+  border-radius: 0.75rem;
+  z-index: 2;
+  opacity: 0.8;
+}
+
+.service-detail::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgb(31, 41, 55, 0.7);
+  border-radius: 0.75rem;
+  z-index: 1;
+}
+
+.service-detail:hover::before {
+  filter: blur(0);
+  opacity: 1; /* opcjonalnie możesz też zwiększyć przejrzystość */
+}
+</style>
