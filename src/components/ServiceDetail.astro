@@ -40,6 +40,7 @@ const { id, icon, title, titleHighlight, description, sections } = Astro.props;
   border-radius: 0.75rem;
   z-index: 2;
   opacity: 0.8;
+  transition: filter 0.6s ease, opacity 0.6s ease;
 }
 
 .service-detail::after {
@@ -53,6 +54,34 @@ const { id, icon, title, titleHighlight, description, sections } = Astro.props;
 
 .service-detail:hover::before {
   filter: blur(0);
-  opacity: 1; /* opcjonalnie możesz też zwiększyć przejrzystość */
+  opacity: 1;
+}
+
+/* Efekt scroll tylko na urządzeniach dotykowych (bez hover) */
+@media (hover: none) {
+  .service-detail.in-view::before {
+    filter: blur(0);
+    opacity: 1;
+  }
 }
 </style>
+
+<script>
+if (typeof window !== 'undefined') {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, {
+    threshold: 0.2 // Element musi być widoczny w 20%
+  });
+
+  document.querySelectorAll('.service-detail').forEach(el => {
+    observer.observe(el);
+  });
+}
+</script>

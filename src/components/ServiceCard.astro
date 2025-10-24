@@ -36,6 +36,7 @@ const Tag = href ? 'a' : 'div';
   border-radius: 0.75rem;
   z-index: 2;
   opacity: 0.8;
+  transition: filter 0.6s ease, opacity 0.6s ease;
 }
 
 .service-card::after {
@@ -49,6 +50,34 @@ const Tag = href ? 'a' : 'div';
 
 .service-card:hover::before {
   filter: blur(0);
-  opacity: 1; /* opcjonalnie możesz też zwiększyć przejrzystość */
+  opacity: 1;
+}
+
+/* Efekt scroll tylko na urządzeniach dotykowych (bez hover) */
+@media (hover: none) {
+  .service-card.in-view::before {
+    filter: blur(0);
+    opacity: 1;
+  }
 }
 </style>
+
+<script>
+if (typeof window !== 'undefined') {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  document.querySelectorAll('.service-card').forEach(el => {
+    observer.observe(el);
+  });
+}
+</script>
