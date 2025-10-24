@@ -1,0 +1,325 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pricingData = [
+	{
+		title: 'Piaskowanie Przemysłowe',
+		icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+		</svg>`,
+		basePrice: 'od 80 zł/m²',
+		description: 'Czyszczenie powierzchni przemysłowych',
+		items: [
+			'Usuwanie rdzy i farby',
+			'Przygotowanie pod malowanie',
+			'Matowienie powierzchni',
+			'Wycena indywidualna dla dużych projektów'
+		]
+	},
+	{
+		title: 'Piaskowanie Felg',
+		icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+		</svg>`,
+		basePrice: 'od 120 zł/szt',
+		description: 'Renowacja felg samochodowych',
+		items: [
+			'Felgi aluminiowe: 120-180 zł/szt',
+			'Felgi stalowe: 80-120 zł/szt',
+			'Cena zależy od rozmiaru i stanu',
+			'Rabat przy komplecie 4 felg'
+		]
+	},
+	{
+		title: 'Konstrukcje Stalowe',
+		icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+		</svg>`,
+		basePrice: 'od 60 zł/m²',
+		description: 'Balustrady, bramy, ogrodzenia',
+		items: [
+			'Balustrady i poręcze',
+			'Bramy i ogrodzenia',
+			'Konstrukcje stalowe',
+			'Możliwość pracy na miejscu u klienta'
+		]
+	},
+	{
+		title: 'Renowacja Powierzchni',
+		icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+		</svg>`,
+		basePrice: 'od 100 zł/m²',
+		description: 'Metal, beton, kamień',
+		items: [
+			'Czyszczenie elewacji',
+			'Renowacja elementów zabytkowych',
+			'Usuwanie graffiti',
+			'Wycena po oględzinach'
+		]
+	},
+	{
+		title: 'Piaskowanie Maszyn',
+		icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+		</svg>`,
+		basePrice: 'wycena indywidualna',
+		description: 'Urządzenia i maszyny przemysłowe',
+		items: [
+			'Maszyny przemysłowe',
+			'Urządzenia rolnicze',
+			'Części samochodowe',
+			'Cena ustalana po oględzinach'
+		]
+	},
+	{
+		title: 'Doradztwo Techniczne',
+		icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+		</svg>`,
+		basePrice: 'bezpłatnie',
+		description: 'Profesjonalne doradztwo',
+		items: [
+			'Dobór odpowiedniej metody',
+			'Ocena stanu powierzchni',
+			'Rekomendacje techniczne',
+			'Bezpłatna wycena'
+		]
+	}
+];
+---
+
+<Layout
+	title="Cennik Usług Piaskowania | Atrakcyjne Ceny | Bezpłatna Wycena"
+	description="Sprawdź cennik usług piaskowania. Oferujemy konkurencyjne ceny, bezpłatną wycenę i doradztwo techniczne. Piaskowanie przemysłowe, felg, konstrukcji stalowych."
+	keywords="cennik piaskowania, ceny piaskowania, wycena piaskowania, koszt piaskowania"
+>
+	<!-- Header Section -->
+	<section class="bg-gradient-to-br from-gray-850 via-gray-900 to-gray-800 text-white py-16">
+		<div class="container mx-auto px-4">
+			<div class="max-w-3xl mx-auto text-center">
+				<h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-100">
+					Cennik <span class="text-primary-400">Usług</span>
+				</h1>
+				<p class="text-xl text-gray-200">
+					Atrakcyjne ceny przy zachowaniu najwyższej jakości usług
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing Info -->
+	<section class="py-12 bg-gray-900">
+		<div class="container mx-auto px-4">
+			<div class="max-w-4xl mx-auto bg-gray-800 p-6 rounded-xl border border-gray-700">
+				<div class="flex items-start">
+					<div class="flex-shrink-0">
+						<svg class="w-8 h-8 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+						</svg>
+					</div>
+					<div class="ml-4">
+						<h3 class="text-lg font-semibold text-gray-100 mb-2">Informacja o cenach</h3>
+						<p class="text-gray-300 leading-relaxed">
+							Podane ceny są orientacyjne i mogą się różnić w zależności od zakresu prac, stanu powierzchni,
+							lokalizacji oraz indywidualnych wymagań klienta. Ostateczną cenę ustalamy po dokonaniu oględzin
+							i szczegółowej analizy projektu. Oferujemy <strong class="text-primary-400">bezpłatną wycenę</strong> oraz doradztwo techniczne.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing Cards -->
+	<section class="py-20 bg-gray-900">
+		<div class="container mx-auto px-4">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+				{pricingData.map((service) => (
+					<div class="bg-gray-800 border-2 border-gray-700 rounded-xl p-8 hover:border-primary-500 hover:shadow-glow transition-all">
+						<div class="w-16 h-16 bg-gradient-to-br from-steel-600 to-primary-600 rounded-lg flex items-center justify-center text-white mb-4" set:html={service.icon} />
+
+						<h3 class="text-2xl font-bold text-gray-100 mb-2">{service.title}</h3>
+						<p class="text-gray-300 mb-4">{service.description}</p>
+
+						<div class="mb-6">
+							<div class="text-3xl font-bold text-primary-400">{service.basePrice}</div>
+						</div>
+
+						<ul class="space-y-3">
+							{service.items.map((item) => (
+								<li class="flex items-start text-gray-300">
+									<svg class="w-5 h-5 text-primary-400 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+									</svg>
+									<span class="text-sm">{item}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Additional Services -->
+	<section class="py-20 bg-gray-850">
+		<div class="container mx-auto px-4 max-w-5xl">
+			<div class="text-center mb-12">
+				<h2 class="text-3xl md:text-4xl font-bold text-gray-100 mb-4">
+					Dodatkowe <span class="text-primary-400">Informacje</span>
+				</h2>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+					<div class="flex items-center mb-4">
+						<div class="w-12 h-12 bg-gradient-to-br from-steel-600 to-primary-600 rounded-lg flex items-center justify-center text-white mr-4">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold text-gray-100">Rabaty i Promocje</h3>
+					</div>
+					<ul class="space-y-2 text-gray-300">
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Rabat 10% dla stałych klientów</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Promocje dla dużych zleceń</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Rabaty ilościowe (np. komplet felg)</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Indywidualne warunki dla firm</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+					<div class="flex items-center mb-4">
+						<div class="w-12 h-12 bg-gradient-to-br from-steel-600 to-primary-600 rounded-lg flex items-center justify-center text-white mr-4">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold text-gray-100">Co Wpływa na Cenę?</h3>
+					</div>
+					<ul class="space-y-2 text-gray-300">
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Wielkość i stan powierzchni</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Stopień zabrudzenia/korozji</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Lokalizacja prac (u nas/u klienta)</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Typ materiału do piaskowania</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+					<div class="flex items-center mb-4">
+						<div class="w-12 h-12 bg-gradient-to-br from-steel-600 to-primary-600 rounded-lg flex items-center justify-center text-white mr-4">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold text-gray-100">Formy Płatności</h3>
+					</div>
+					<ul class="space-y-2 text-gray-300">
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Gotówka</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Przelew bankowy</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Faktury VAT</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Możliwość rozliczenia w ratach (duże projekty)</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+					<div class="flex items-center mb-4">
+						<div class="w-12 h-12 bg-gradient-to-br from-steel-600 to-primary-600 rounded-lg flex items-center justify-center text-white mr-4">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold text-gray-100">Czas Realizacji</h3>
+					</div>
+					<ul class="space-y-2 text-gray-300">
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Małe zlecenia: 1-2 dni</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Średnie projekty: 3-5 dni</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Duże kontrakty: według ustaleń</span>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary-400 mr-2">•</span>
+							<span>Możliwość ekspresowej realizacji</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="py-20 bg-gradient-to-br from-steel-700 to-primary-700 text-white relative overflow-hidden">
+		<div class="absolute inset-0 opacity-10">
+			<div class="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100 to-transparent transform skew-y-6"></div>
+		</div>
+
+		<div class="container mx-auto px-4 text-center relative z-10">
+			<h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+				Potrzebujesz Bezpłatnej Wyceny?
+			</h2>
+			<p class="text-xl mb-8 text-gray-100 max-w-2xl mx-auto">
+				Skontaktuj się z nami już dziś - przygotujemy dla Ciebie szczegółową i bezpłatną wycenę
+				oraz pomożemy dobrać najlepsze rozwiązanie
+			</p>
+			<div class="flex flex-col sm:flex-row gap-4 justify-center">
+				<a
+					href="/kontakt"
+					class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-500 hover:shadow-glow transition-all inline-block"
+				>
+					Skontaktuj się z nami
+				</a>
+				<a
+					href="tel:+48XXXXXXXXX"
+					class="bg-gray-800/80 text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-700 hover:border-primary-400 transition-all inline-block border-2 border-white"
+				>
+					Zadzwoń: +48 XXX XXX XXX
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>

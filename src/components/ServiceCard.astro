@@ -1,0 +1,25 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  href?: string;
+}
+
+const { title, description, icon, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag href={href} class={`bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-primary-500 hover:shadow-glow transition-all group ${href ? 'block' : ''}`}>
+  <div class="text-primary-400 mb-4 group-hover:scale-110 transition-transform" set:html={icon} />
+  <h3 class="text-xl font-semibold text-gray-100 mb-3 group-hover:text-primary-400 transition-colors">{title}</h3>
+  <p class="text-gray-300 leading-relaxed">{description}</p>
+  {href && (
+    <div class="mt-4 text-primary-400 font-medium flex items-center group-hover:translate-x-1 transition-transform">
+      Dowiedz się więcej
+      <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  )}
+</Tag>
